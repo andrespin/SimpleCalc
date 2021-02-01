@@ -11,6 +11,7 @@
         android:layout_height = "match_parent"
         android:layout_gravity = "center"
         android:columnCount="4"
+        android:rowCount="5"
         android:columnOrderPreserved="true"
         android:orientation="horizontal">
 
@@ -19,15 +20,15 @@
             android:id="@+id/buttonac"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
-            android:layout_columnWeight="1"
 
+            android:layout_rowWeight="1"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:layout_columnWeight="1"
             android:layout_margin="@dimen/dimensionbetweenbuttons"
             android:background="@drawable/rounded_button"
             android:text="AC"
-            android:textSize="@dimen/button_text"
-            />
-
+            android:textSize="@dimen/button_text" />
 
         <Button
             android:id="@+id/buttonplusminus"
@@ -35,6 +36,8 @@
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_column="1"
+            android:layout_row="0"
             android:layout_margin="@dimen/dimensionbetweenbuttons"
             android:background="@drawable/rounded_button"
             android:text="+/-"
@@ -49,6 +52,8 @@
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_column="2"
+            android:layout_row="0"
             android:layout_margin="@dimen/dimensionbetweenbuttons"
             android:background="@drawable/rounded_button"
             android:text="%"
@@ -63,6 +68,8 @@
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_column="3"
+            android:layout_row="0"
             android:layout_margin="@dimen/dimensionbetweenbuttons"
             android:background="@drawable/rounded_button"
             android:text="/"
@@ -78,6 +85,8 @@
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_column="3"
+            android:layout_row="1"
             android:layout_margin="@dimen/dimensionbetweenbuttons"
             android:background="@drawable/rounded_button"
             android:text="x"
@@ -92,6 +101,8 @@
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_column="3"
+            android:layout_row="2"
             android:layout_margin="@dimen/dimensionbetweenbuttons"
             android:background="@drawable/rounded_button"
             android:text="—"
@@ -106,14 +117,13 @@
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_column="3"
+            android:layout_row="3"
             android:layout_margin="@dimen/dimensionbetweenbuttons"
             android:background="@drawable/rounded_button"
             android:text="+"
             android:textSize="@dimen/button_text"
             />
-
-
-
 
         <Button
             android:id="@+id/buttonequals"
@@ -121,7 +131,8 @@
             android:layout_height="wrap_content"
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
-            
+            android:layout_column="3"
+            android:layout_row="4"
             android:layout_margin="@dimen/dimensionbetweenbuttons"
             android:background="@drawable/rounded_button"
             android:text="="
@@ -137,6 +148,8 @@
             android:layout_columnSpan="1"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
+            android:layout_column="0"
+            android:layout_row="3"
             android:layout_margin="@dimen/dimensionbetweenbuttons"
             android:textSize="@dimen/button_text"
             android:background="@drawable/rounded_button"
@@ -149,6 +162,8 @@
             android:text="2"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
+            android:layout_column="1"
+            android:layout_row="3"
             android:background="@drawable/rounded_button"
             android:layout_margin="@dimen/dimensionbetweenbuttons"
             android:textSize="@dimen/button_text" />
@@ -160,6 +175,8 @@
             android:text="3"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
+            android:layout_column="2"
+            android:layout_row="3"
             android:background="@drawable/rounded_button"
             android:layout_margin="@dimen/dimensionbetweenbuttons"
             android:textSize="@dimen/button_text" />
@@ -171,6 +188,8 @@
             android:text="4"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
+            android:layout_column="0"
+            android:layout_row="2"
             android:background="@drawable/rounded_button"
             android:layout_margin="@dimen/dimensionbetweenbuttons"
             android:textSize="@dimen/button_text" />
@@ -184,6 +203,8 @@
             android:text="5"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
+            android:layout_column="1"
+            android:layout_row="2"
             android:background="@drawable/rounded_button"
             android:layout_margin="@dimen/dimensionbetweenbuttons"
             android:textSize="@dimen/button_text" />
@@ -195,6 +216,8 @@
             android:text="6"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
+            android:layout_column="2"
+            android:layout_row="2"
             android:background="@drawable/rounded_button"
             android:layout_margin="@dimen/dimensionbetweenbuttons"
             android:textSize="@dimen/button_text" />
@@ -207,6 +230,8 @@
             android:text="7"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
+            android:layout_column="0"
+            android:layout_row="1"
             android:background="@drawable/rounded_button"
             android:layout_margin="@dimen/dimensionbetweenbuttons"
             android:textSize="@dimen/button_text" />
@@ -218,6 +243,8 @@
             android:text="8"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
+            android:layout_column="1"
+            android:layout_row="1"
             android:background="@drawable/rounded_button"
             android:layout_margin="@dimen/dimensionbetweenbuttons"
             android:textSize="@dimen/button_text" />
@@ -229,6 +256,8 @@
             android:text="9"
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
+            android:layout_column="2"
+            android:layout_row="1"
             android:background="@drawable/rounded_button"
             android:layout_margin="@dimen/dimensionbetweenbuttons"
             android:textSize="@dimen/button_text" />
@@ -247,10 +276,7 @@
             android:layout_margin="@dimen/dimensionbetweenbuttons"
             android:textSize="@dimen/button_text" />
 
-        <!--
-            android:layout_row="3"
-            android:layout_column="0"
-        -->
+
 
         <Button
             android:id="@+id/buttonpoint"
