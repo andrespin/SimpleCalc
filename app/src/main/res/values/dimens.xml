@@ -2,5 +2,11 @@
 <resources>
 
     <dimen name="button_text">20sp</dimen>
+
+
     <dimen name="dimensionbetweenbuttons">6dp</dimen>
+
+    <dimen name="dimensionbetweenbuttonsland">2dp</dimen>
+
+
 </resources>

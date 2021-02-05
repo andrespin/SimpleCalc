@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -18,15 +17,12 @@
         tools:layout_editor_absoluteY="0dp" />
 
 
-
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3"
-        />
+        app:layout_constraintGuide_percent="0.3" />
 
     <include
         android:id="@+id/include"
@@ -37,16 +33,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
+
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/calcField"
         android:layout_width="300dp"
         android:layout_height="60dp"
-        android:text="TextView"
+        android:text=""
         android:textSize="38sp"
         app:layout_constraintBottom_toTopOf="@+id/include"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
