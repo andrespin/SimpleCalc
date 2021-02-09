@@ -244,11 +244,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 if (isChecked) {
                     imageView.setVisibility(View.INVISIBLE);
                     if (checkedId == group.findViewById(R.id.btnDay).getId()) {
-                        System.out.println("Day");
                         setAppTheme(themeSimpleCalc);
 
                     } else {
-                        System.out.println("Night");
                         setAppTheme(themeSimpleCalcNight);
                     }
                 } else {
