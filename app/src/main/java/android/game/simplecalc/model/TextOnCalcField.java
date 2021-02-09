@@ -1,4 +1,4 @@
-package android.game.simplecalc;
+package android.game.simplecalc.model;
 
 import java.io.Serializable;
 
