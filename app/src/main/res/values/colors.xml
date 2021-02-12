@@ -7,4 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="red">#FFB81A1A</color>
+    <color name="thumbNight">#FF3A2C2C</color>
+    <color name="trackNight">#987D1B</color>
+    <color name="thumbDay">#00FFDB</color>
+    <color name="trackDay">#7C8885</color>
 </resources>
