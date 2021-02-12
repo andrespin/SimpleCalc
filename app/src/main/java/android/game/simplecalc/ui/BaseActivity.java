@@ -10,19 +10,19 @@ import androidx.appcompat.app.AppCompatActivity;
 abstract class BaseActivity extends AppCompatActivity {
 
 
-    private static final String NameSharedPreference = "LOGIN";
-
-
-    private static final String AppTheme = "APP_THEME";
-
+    protected final static String KEY_TextOnCalcField = "key_MainActivityController";
     protected static final int themeSimpleCalc = 0;
     protected static final int themeSimpleCalcNight = 1;
 
+    private static final String NameSharedPreference = "LOGIN";
+    private static final String AppTheme = "APP_THEME";
+    private int themeNumberForSwitch;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTheme(getAppTheme(R.style.DayTheme));
+
     }
 
     private int getAppTheme(int codeStyle) {
@@ -36,6 +36,11 @@ abstract class BaseActivity extends AppCompatActivity {
     }
 
 
+    protected int getAppThemeForSwitch() {
+        return themeNumberForSwitch;
+    }
+
+
     protected void setAppTheme(int codeStyle) {
         SharedPreferences sharedPref = getSharedPreferences(NameSharedPreference, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
@@ -46,10 +51,13 @@ abstract class BaseActivity extends AppCompatActivity {
     private int codeStyleToStyleId(int codeStyle) {
         switch (codeStyle) {
             case themeSimpleCalc:
+                themeNumberForSwitch = themeSimpleCalc;
                 return R.style.DayTheme;
             case themeSimpleCalcNight:
+                themeNumberForSwitch = themeSimpleCalcNight;
                 return R.style.NightTheme;
             default:
+                themeNumberForSwitch = themeSimpleCalc;
                 return R.style.DayTheme;
         }
     }

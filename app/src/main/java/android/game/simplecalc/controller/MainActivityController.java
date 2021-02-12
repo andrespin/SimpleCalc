@@ -9,20 +9,21 @@ import java.util.List;
 
 import android.game.simplecalc.model.Counter;
 
+import static android.util.TypedValue.COMPLEX_UNIT_SP;
+
 public class MainActivityController implements MainController {
 
-    List<Button> buttons;
-    TextView calcField;
+
     private String calcText;
     private TextOnCalcField textOnCalcField = new TextOnCalcField();
     private Counter counter = new CalcFieldCount();
 
-    public void setTextOnCalcField(TextOnCalcField textOnCalcField) {
-        this.textOnCalcField = textOnCalcField;
+    public void setTextOnCalcField(String text) {
+        textOnCalcField.setTextOnCalcField(text);
     }
 
-    public TextOnCalcField getTextOnCalcField() {
-        return textOnCalcField;
+    public String getTextOnCalcField() {
+        return textOnCalcField.getTextOnCalcField();
     }
 
 
@@ -40,104 +41,85 @@ public class MainActivityController implements MainController {
     }
 
     public void calcActionPercent(TextView calcField) {
-        calcText = calcField.getText().toString();
-        calcField.setText(calcText + " % ");
-        textOnCalcField.setTextOnCalcField(calcText + " % ");
+        putInCalcField(calcField, " % ");
     }
 
     public void calcActionShare(TextView calcField) {
-        calcText = calcField.getText().toString();
-        calcField.setText(calcText + " / ");
-        textOnCalcField.setTextOnCalcField(calcText + " / ");
+        putInCalcField(calcField, " / ");
     }
 
     public void calcActionMultiply(TextView calcField) {
-        calcText = calcField.getText().toString();
-        calcField.setText(calcText + " * ");
-        textOnCalcField.setTextOnCalcField(calcText + " * ");
+        putInCalcField(calcField, " * ");
     }
 
     public void calcActionPlus(TextView calcField) {
-        calcText = calcField.getText().toString();
-        calcField.setText(calcText + " + ");
-        textOnCalcField.setTextOnCalcField(calcText + " + ");
+        putInCalcField(calcField, " + ");
     }
 
     public void calcActionMinus(TextView calcField) {
-        calcText = calcField.getText().toString();
-        calcField.setText(calcText + " − ");
-        textOnCalcField.setTextOnCalcField(calcText + " − ");
+        putInCalcField(calcField, " − ");
     }
 
     public void calcActionEquals(TextView calcField) {
-        calcText = calcField.getText().toString();
-        calcField.setText(counter.countCalcField(calcText));
+        count(calcField);
     }
 
+
     public void calcActionPoint(TextView calcField) {
-        calcText = calcField.getText().toString();
-        calcField.setText(calcText + ".");
-        textOnCalcField.setTextOnCalcField(calcText + ".");
+        putInCalcField(calcField, ".");
     }
 
     public void calcActionButton1(TextView calcField) {
-        calcText = calcField.getText().toString();
-        calcField.setText(calcText + "1");
-        textOnCalcField.setTextOnCalcField(calcText + "1");
+        putInCalcField(calcField, "1");
     }
 
     public void calcActionButton2(TextView calcField) {
-        calcText = calcField.getText().toString();
-        calcField.setText(calcText + "2");
-        textOnCalcField.setTextOnCalcField(calcText + "2");
+        putInCalcField(calcField, "2");
     }
 
     public void calcActionButton3(TextView calcField) {
-        calcText = calcField.getText().toString();
-        calcField.setText(calcText + "3");
-        textOnCalcField.setTextOnCalcField(calcText + "3");
+        putInCalcField(calcField, "3");
     }
 
     public void calcActionButton4(TextView calcField) {
-        calcText = calcField.getText().toString();
-        calcField.setText(calcText + "4");
-        textOnCalcField.setTextOnCalcField(calcText + "4");
+        putInCalcField(calcField, "4");
     }
 
     public void calcActionButton5(TextView calcField) {
-        calcText = calcField.getText().toString();
-        calcField.setText(calcText + "5");
-        textOnCalcField.setTextOnCalcField(calcText + "5");
+        putInCalcField(calcField, "5");
     }
 
     public void calcActionButton6(TextView calcField) {
-        calcText = calcField.getText().toString();
-        calcField.setText(calcText + "6");
-        textOnCalcField.setTextOnCalcField(calcText + "6");
+        putInCalcField(calcField, "6");
     }
 
     public void calcActionButton7(TextView calcField) {
-        calcText = calcField.getText().toString();
-        calcField.setText(calcText + "7");
-        textOnCalcField.setTextOnCalcField(calcText + "7");
+        putInCalcField(calcField, "7");
     }
 
     public void calcActionButton8(TextView calcField) {
-        calcText = calcField.getText().toString();
-        calcField.setText(calcText + "8");
-        textOnCalcField.setTextOnCalcField(calcText + "8");
+        putInCalcField(calcField, "8");
     }
 
     public void calcActionButton9(TextView calcField) {
-        calcText = calcField.getText().toString();
-        calcField.setText(calcText + "9");
-        textOnCalcField.setTextOnCalcField(calcText + "9");
+        putInCalcField(calcField, "9");
     }
 
     public void calcActionButton0(TextView calcField) {
+        putInCalcField(calcField, "0");
+    }
+
+    private void putInCalcField(TextView calcField, String toPut) {
         calcText = calcField.getText().toString();
-        calcField.setText(calcText + "0");
-        textOnCalcField.setTextOnCalcField(calcText + "0");
+        if (calcText.toCharArray().length < 8) {
+            calcField.setTextSize(COMPLEX_UNIT_SP, 90);
+            calcField.setText(calcText + toPut);
+            textOnCalcField.setTextOnCalcField(calcText + "0");
+        } else if (calcText.toCharArray().length < 32) {
+            calcField.setTextSize(COMPLEX_UNIT_SP, 45);
+            calcField.setText(calcText + toPut);
+            textOnCalcField.setTextOnCalcField(calcText + "0");
+        }
     }
 
 
@@ -146,5 +128,21 @@ public class MainActivityController implements MainController {
             str = str.substring(0, str.length() - 1);
         }
         return str;
+    }
+
+    private void count(TextView calcField) {
+        try {
+            calcText = calcField.getText().toString();
+            String res = counter.countCalcField(calcText);
+            if (res.equals("Ошибка в алгоритме")) {
+                calcField.setTextSize(COMPLEX_UNIT_SP, 45);
+                calcField.setText(res);
+            }
+            calcField.setText(counter.countCalcField(calcText));
+        } catch (Exception e) {
+            e.printStackTrace();
+            calcField.setTextSize(COMPLEX_UNIT_SP, 45);
+            calcField.setText("Ошибка");
+        }
     }
 }

@@ -1,5 +1,7 @@
 package android.game.simplecalc.ui;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.game.simplecalc.controller.MainActivityController;
 import android.game.simplecalc.R;
 import android.game.simplecalc.model.TextOnCalcField;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButtonToggleGroup;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +22,10 @@ import android.game.simplecalc.controller.MainController;
 
 import androidx.annotation.NonNull;
 
+import org.w3c.dom.Text;
+
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
-
-    private final static String KEY_TextOnCalcField = "key_MainActivityController";
 
     Button buttonAC;
     Button buttonPlusMinus;
@@ -45,61 +48,69 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     Button buttonPoint;
 
     ImageView imageView;
+    ImageView imageSettings;
 
     TextView calcField;
+
 
     protected static final int themeSimpleCalc = 0;
     protected static final int themeSimpleCalcNight = 1;
 
-    private MainActivityController mainActivityController;
-    private TextOnCalcField textOnCalcFieldInActivity = new TextOnCalcField();
+    private boolean isInMain;
+
 
     private List<Button> buttons;
 
     MainController mainController;
+    int orientation;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         initProcess();
-        initToggle();
-
+        isInMain = true;
     }
 
 
-//    @Override
-//    public void onSaveInstanceState(@NonNull Bundle instanceState) {
-//        super.onSaveInstanceState(instanceState);
-//        textOnCalcFieldInActivity.setTextOnCalcField(mainActivityController.getTextOnCalcField().getTextOnCalcField());
-//        System.out.println(textOnCalcFieldInActivity.getTextOnCalcField());
-//        System.out.println("Work");
-//        Log.d("Before :", textOnCalcFieldInActivity.getTextOnCalcField());
-//        instanceState.putSerializable(KEY_TextOnCalcField, textOnCalcFieldInActivity);
-//    }
-//
-//
-//    @Override
-//    protected void onRestoreInstanceState(@NonNull Bundle instanceState) {
-//        super.onRestoreInstanceState(instanceState);
-//        textOnCalcFieldInActivity = (TextOnCalcField) instanceState.getSerializable(KEY_TextOnCalcField);
-//        //  mainActivityController.returnDataAfterScreenReverse();
-//        System.out.println(textOnCalcFieldInActivity.getTextOnCalcField());
-//        System.out.println("Work");
-//        Log.d("After :", textOnCalcFieldInActivity.getTextOnCalcField());
-//        if (textOnCalcFieldInActivity.getTextOnCalcField() != null) {
-//            calcField.setText(textOnCalcFieldInActivity.getTextOnCalcField());
-//        }
-//
-//    }
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle instanceState) {
+        super.onSaveInstanceState(instanceState);
+        System.out.println("Work1");
+        if (isInMain) {
+            mainController.setTextOnCalcField(calcField.getText().toString());
+            instanceState.putSerializable(KEY_TextOnCalcField, mainController);
+        }
+    }
+
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle instanceState) {
+        super.onRestoreInstanceState(instanceState);
+        System.out.println("Work2");
+        if (isInMain) {
+            mainController = (MainController) instanceState.getSerializable(KEY_TextOnCalcField);
+            calcField.setText(mainController.getTextOnCalcField());
+        }
+    }
 
     private void initProcess() {
         mainController = new MainActivityController();
         init();
         addbuttonsToList();
         setButtonsListener();
+        initSettingsImageButton();
+        setTextFromIntent();
+    }
+
+    private void setTextFromIntent() {
+        try {
+            mainController.setTextOnCalcField((String) getIntent().getSerializableExtra(KEY_TextOnCalcField));
+            calcField.setText(mainController.getTextOnCalcField());
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
     }
 
     private List<Button> addbuttonsToList() {
@@ -226,54 +237,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-//             MaterialButtonToggleGroup materialButtonToggleGroup =
-//                     findViewById(R.id.toggle_button_group);
-//             int buttonId = materialButtonToggleGroup.getCheckedButtonId();
-//             MaterialButton button = materialButtonToggleGroup.findViewById(buttonId);
-
-
-    private void initToggle() {
-
-        MaterialButtonToggleGroup materialButtonToggleGroup = findViewById(R.id.toggleGroup);
-        initBtnDayOnClickListener();
-        initBtnNightOnClickListener();
-        materialButtonToggleGroup.addOnButtonCheckedListener(new MaterialButtonToggleGroup.OnButtonCheckedListener() {
-            @Override
-            public void onButtonChecked(MaterialButtonToggleGroup group, int checkedId, boolean isChecked) {
-
-                if (isChecked) {
-                    imageView.setVisibility(View.INVISIBLE);
-                    if (checkedId == group.findViewById(R.id.btnDay).getId()) {
-                        setAppTheme(themeSimpleCalc);
-
-                    } else {
-                        setAppTheme(themeSimpleCalcNight);
-                    }
-                } else {
-                    imageView.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-    }
-
-    private void initBtnNightOnClickListener() {
-        findViewById(R.id.btnNight).setOnClickListener(new View.OnClickListener() {
+    private void initSettingsImageButton() {
+        imageSettings = findViewById(R.id.imageSettings);
+        imageSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                recreate();
+                isInMain = false;
+                mainController.setTextOnCalcField(calcField.getText().toString());
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                intent.putExtra(KEY_TextOnCalcField, mainController.getTextOnCalcField());
+                startActivity(intent);
             }
         });
+
     }
-
-
-    private void initBtnDayOnClickListener() {
-        findViewById(R.id.btnDay).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                recreate();
-            }
-        });
-    }
-
 
 }

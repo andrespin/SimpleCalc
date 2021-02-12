@@ -7,16 +7,6 @@
     tools:context=".ui.MainActivity">
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:src="@drawable/back_4_calc"
-        tools:layout_editor_absoluteX="-25dp"
-        tools:layout_editor_absoluteY="0dp" />
-
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
@@ -36,17 +26,16 @@
 
     <TextView
         android:id="@+id/calcField"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="72dp"
-        android:text=""
-        android:textSize="38sp"
+        android:layout_width="411dp"
+        android:layout_height="142dp"
+        android:layout_marginBottom="8dp"
+        android:text="12345678"
+        android:textSize="90sp"
         app:layout_constraintBottom_toTopOf="@+id/include"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.405"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView" />
-
 
     <com.google.android.material.button.MaterialButtonToggleGroup
         android:id="@+id/toggleGroup"
@@ -54,23 +43,15 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:singleSelection="true">
+        app:singleSelection="true" />
 
-        <Button
-            android:id="@+id/btnDay"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/day" />
-
-        <Button
-            android:id="@+id/btnNight"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/night" />
-
-    </com.google.android.material.button.MaterialButtonToggleGroup>
+    <ImageView
+        android:id="@+id/imageSettings"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_manage" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,8 +1,16 @@
 package android.game.simplecalc.controller;
 
+import android.game.simplecalc.model.TextOnCalcField;
 import android.widget.TextView;
 
-public interface MainController {
+import java.io.Serializable;
+
+public interface MainController extends Serializable {
+
+
+    String getTextOnCalcField();
+
+    void setTextOnCalcField(String text);
 
     void calcActionAC(TextView calcField);
 
